@@ -151,6 +151,7 @@ class Sprite;
 class UI_Text;
 class UI_Image;
 class UI_Button;
+class UI_Slider;
 
 
 
