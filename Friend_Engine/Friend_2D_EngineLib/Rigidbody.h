@@ -6,13 +6,13 @@
 #include "CircleCollider.h"
 
 /* [Rigidbody Component]
-* ¹°¸® °Ô»êÀ» ´ã´çÇÏ´Â ÄÄÆ÷³ÍÆ®·Î, TransformÀ» ÂüÁ¶ÇÏ¿© ÀÌµ¿½ÃÅ²´Ù.
-* ¼Óµµ, °¡¼Óµµ, Áú·®, Áß·Â, °ø±â ÀúÇ× µîÀÇ ¹°¸® ¼Ó¼ºÀ» °ü¸®ÇÏ¸ç
-* PhysicsSystem¿¡ µî·ÏµÇ¾î FixedUpdate()ÁÖ±â·Î ·ÎÁ÷À» Ã³¸®ÇÑ´Ù.
+* ï¿½ï¿½ï¿½ï¿½ ï¿½Ô»ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ï´ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Æ®ï¿½ï¿½, Transformï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¿ï¿½ ï¿½Ìµï¿½ï¿½ï¿½Å²ï¿½ï¿½.
+* ï¿½Óµï¿½, ï¿½ï¿½ï¿½Óµï¿½, ï¿½ï¿½ï¿½ï¿½, ï¿½ß·ï¿½, ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Ó¼ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ï¸ï¿½
+* PhysicsSystemï¿½ï¿½ ï¿½ï¿½ÏµÇ¾ï¿½ FixedUpdate()ï¿½Ö±ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ï¿½Ñ´ï¿½.
 */
 
 // Collision Detection
-// Continuous´Â ºü¸£°Ô ÀÌµ¿ÇÏ´Â ¹°Ã¼ÀÇ ÅÍ³Î¸µÀ» ¹æÁöÇÒ ¼ö ÀÖ´Ù.
+// Continuousï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½Ìµï¿½ï¿½Ï´ï¿½ ï¿½ï¿½Ã¼ï¿½ï¿½ ï¿½Í³Î¸ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½Ö´ï¿½.
 enum class CollisionDetection
 {
     Discrete, Continuous
@@ -37,17 +37,17 @@ private:
     bool isBlockedDown = false;
 
 public:
-    Vector2 velocity = Vector2::zero;           // ¼Óµµ
-    Vector2 acceleration = Vector2::zero;       // °¡¼Óµµ
-    float mass = 1.0f;                          // Áú·®
-    bool useGravity = true;                     // Áß·Â »ç¿ë ¿©ºÎ
-    float gravityScale = 1.0f;                  // Áß·Â º¸Á¤°ª
-    float drag = 0.0f;                          // °ø±â ÀúÇ×, ¸¶Âû·Â (Å¬¼ö·Ï ¼Óµµ ±ðÀÓ)
-    bool isKinematic = false;                   // kinematic ¼³Á¤½Ã ¹°¸® ¿¬»ê°ú Ãæµ¹ º¸Á¤ x
+    Vector2 velocity = Vector2::zero;           // ï¿½Óµï¿½
+    Vector2 acceleration = Vector2::zero;       // ï¿½ï¿½ï¿½Óµï¿½
+    float mass = 1.0f;                          // ï¿½ï¿½ï¿½ï¿½
+    bool useGravity = true;                     // ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
+    float gravityScale = 1.0f;                  // ï¿½ß·ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½
+    float drag = 0.0f;                          // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½, ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (Å¬ï¿½ï¿½ï¿½ï¿½ ï¿½Óµï¿½ ï¿½ï¿½ï¿½ï¿½)
+    bool isKinematic = false;                   // kinematic ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ x
     CollisionDetection collisionDetection = CollisionDetection::Discrete;
 
 private:
-    Vector2 impulse = Vector2::zero;            // ÃßÁø·Â (¼ø°£ÀûÀÎ Èû)
+    Vector2 impulse = Vector2::zero;            // ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ (ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½)
 
 public:
     // component cycle
@@ -61,7 +61,11 @@ public:
 
 private:
     // colliison position correct
-    void CorrectPosition(const ContactInfo& contact);
+    // factor: 1.0 corrects the full overlap depth (default - matches a static/kinematic
+    // opponent). When the OTHER collider also has a non-kinematic Rigidbody, both sides
+    // independently call this, so pass 0.5 on each side - otherwise the pair separates
+    // by 2x the actual overlap (Enter -> pops apart -> Exit -> drifts back -> Enter...).
+    void CorrectPosition(const ContactInfo& contact, float factor = 1.0f);
 
     // CCD (turnneling continuous collision detection)
     void CollisionContinuousDetection();

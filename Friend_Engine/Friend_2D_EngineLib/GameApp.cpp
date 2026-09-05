@@ -79,7 +79,7 @@ void GameApp::Init()
 		0,
 		winClassName.c_str(),
 		titleName.c_str(),
-		WS_POPUP,		// 테두리 없음/ WS_OVERLAPPEDWINDOW (테두리 있음)
+		WS_OVERLAPPEDWINDOW,		// 테두리 없음/ WS_OVERLAPPEDWINDOW (테두리 있음)
 		CW_USEDEFAULT,
 		CW_USEDEFAULT,
 		clientRect.right - clientRect.left,

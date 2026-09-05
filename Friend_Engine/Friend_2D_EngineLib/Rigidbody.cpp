@@ -65,12 +65,12 @@ void Rigidbody::FixedUpdate()
 }
 
 // colliison position correct
-void Rigidbody::CorrectPosition(const ContactInfo& contact)
+void Rigidbody::CorrectPosition(const ContactInfo& contact, float factor)
 {
     if (!isKinematic)
     {
         // position
-        transform->Translate(contact.normal * contact.depth);
+        transform->Translate(contact.normal * contact.depth * factor);
 
         // block
         if (contact.normal.x > 0)      isBlockedLeft = true;
@@ -119,7 +119,9 @@ void Rigidbody::CollisionContinuousDetection()
                 // velocity와 반대 방향의 충돌일 때만 보정
                 if (Vector2::Dot(velocity, contact.normal) < 0)
                 {
-                    CorrectPosition(contact);
+                    Rigidbody* otherRb = other->gameObject->GetComponent<Rigidbody>();
+                    float factor = (otherRb && !otherRb->isKinematic) ? 0.5f : 1.0f;
+                    CorrectPosition(contact, factor);
                     return;
                 }
             }

@@ -24,7 +24,7 @@ void BoxCollider::OnDestroy_Inner()
 }
 
 // UpdateBounds()
-// box colliderÀÇ aabb bound¸¦ updateÇÑ´Ù
+// box colliderï¿½ï¿½ aabb boundï¿½ï¿½ updateï¿½Ñ´ï¿½
 void BoxCollider::UpdateBounds()
 {
     Vector2 center = GetCenter();
@@ -38,8 +38,8 @@ void BoxCollider::UpdateBounds()
 }
 
 // isCollision()
-// ³Ñ°Ü¹ÞÀº ÄÝ¶óÀÌ´õÀÇ Å¸ÀÔ¿¡ µû¸¥ Ãæµ¹ °á°ú¸¦ returnÇÑ´Ù
-// Ãæµ¹ÇÑ °æ¿ì contact info¸¦ °è»êÇÑ´Ù
+// ï¿½Ñ°Ü¹ï¿½ï¿½ï¿½ ï¿½Ý¶ï¿½ï¿½Ì´ï¿½ï¿½ï¿½ Å¸ï¿½Ô¿ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ returnï¿½Ñ´ï¿½
+// ï¿½æµ¹ï¿½ï¿½ ï¿½ï¿½ï¿½ contact infoï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½Ñ´ï¿½
 bool BoxCollider::isCollision(ICollider* other, ContactInfo& contact)
 {
     if (!transform) return false;
@@ -57,8 +57,8 @@ bool BoxCollider::isCollision(ICollider* other, ContactInfo& contact)
 }
 
 // FinalizeCollision()
-// ÀÌÀü ÇÁ·¹ÀÓ Ãæµ¹ Á¤º¸¿Í ÇöÀç ÇÁ·¹ÀÓ Ãæµ¹ Á¤º¸¸¦ ºñ±³ÇÏ¿©
-// isTrigger À¯¹«¿¡ µû¶ó Enter, Stay, Exit Ãæµ¹ ÀÌº¥Æ® ÇÔ¼ö¸¦ È£ÃâÇÑ´Ù.
+// ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½Ï¿ï¿½
+// isTrigger ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ Enter, Stay, Exit ï¿½æµ¹ ï¿½Ìºï¿½Æ® ï¿½Ô¼ï¿½ï¿½ï¿½ È£ï¿½ï¿½ï¿½Ñ´ï¿½.
 void BoxCollider::FinalizeCollision()
 {
     // Enter & Stay
@@ -103,40 +103,40 @@ void BoxCollider::FinalizeCollision()
 }
 
 // CheckAABBCollision()
-// this box¿Í other boxÀÇ aabb Ãæµ¹ °á°ú ¹ÝÈ¯
+// this boxï¿½ï¿½ other boxï¿½ï¿½ aabb ï¿½æµ¹ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
 {
     // 1. AABB
     if (maxX < other->minX || minX > other->maxX || maxY < other->minY || minY > other->maxY)
         return false;
 
-    // 2. Ãæµ¹ ÁöÁ¡: µÎ AABB Áß½É Áß°£Á¡
+    // 2. ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½: ï¿½ï¿½ AABB ï¿½ß½ï¿½ ï¿½ß°ï¿½ï¿½ï¿½
     Vector2 thisCenter = GetCenter();
     Vector2 otherCenter = other->GetCenter();
     contact.point = (thisCenter + otherCenter) * 0.5f;
 
-    // 3. Ãàº° Ä§Åõ ±íÀÌ °è»ê
+    // 3. ï¿½àº° Ä§ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     float overlapX = min(maxX, other->maxX) -max(minX, other->minX);
     float overlapY = min(maxY, other->maxY) - max(minY, other->minY);
 
-    // 4. Ä§Åõ°¡ ÀûÀº ÃàÀ» µû¶ó ¹ý¼± °áÁ¤
+    // 4. Ä§ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
     if (overlapX < overlapY)
     {
-        // XÃà ¹æÇâ ¹ý¼±
+        // Xï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         contact.normal = (thisCenter.x < otherCenter.x) ? Vector2(-1, 0) : Vector2(1, 0);
         contact.depth = overlapX;
     }
     else
     {
-        // YÃà ¹æÇâ ¹ý¼±
+        // Yï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         contact.normal = (thisCenter.y > otherCenter.y) ? Vector2(0, 1) : Vector2(0, -1);
         contact.depth = overlapY;
     }
 
-    // ÇÃ·§Æû Ã³¸®
+    // ï¿½Ã·ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     if (isFlatform || other->isFlatform)
     {
-        // ÇÃ·§Æû ÆÇº°
+        // ï¿½Ã·ï¿½ï¿½ï¿½ ï¿½Çºï¿½
         BoxCollider* flatform = isFlatform ? this : other;
         BoxCollider* otherBox = (flatform == this) ? other : this;
 
@@ -154,7 +154,7 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
 }
 
 // CheckCircleCollision()
-// this box¿Í other circleÀÇ Ãæµ¹ °á°ú ¹ÝÈ¯
+// this boxï¿½ï¿½ other circleï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& contact)
 {
     Vector2 boxCenter = GetCenter();
@@ -163,12 +163,12 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
     Vector2 circleCenter = other->GetCenter();
     float circleRadius = other->radius * other->transform->GetWorldScale().x;
 
-    // AABB ³»ºÎ¿¡¼­ °¡Àå °¡±î¿î Á¡ Ã£±â
+    // AABB ï¿½ï¿½ï¿½Î¿ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ Ã£ï¿½ï¿½
     float closestX = clamp(circleCenter.x, boxCenter.x - boxSize.x, boxCenter.x + boxSize.x);
     float closestY = clamp(circleCenter.y, boxCenter.y - boxSize.y, boxCenter.y + boxSize.y);
     Vector2 closestPoint(closestX, closestY);
 
-    // ¿ø Áß½É°ú °¡Àå °¡±î¿î Á¡ »çÀÌ °Å¸®
+    // ï¿½ï¿½ ï¿½ß½É°ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ ï¿½Å¸ï¿½
     Vector2 diff = circleCenter - closestPoint;
     float distSq = diff.SqrMagnitude();
 
@@ -180,7 +180,7 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
 
     if (distSq == 0.0f)
     {
-        contact.normal = Vector2(0, 1); // ¿¹¿Ü Ã³¸® : ¾ÈÂÊ ¿ÏÀüÈ÷ Æ÷ÇÔ
+        contact.normal = Vector2(0, 1); // ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½ : ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½
         contact.depth = circleRadius;
     }
     else
@@ -190,7 +190,7 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
         contact.depth = circleRadius - distance;
     }
 
-    // ÇÃ·§Æû Ã³¸®
+    // ï¿½Ã·ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     if (isFlatform)
     {
         /// normal.y -1
@@ -206,10 +206,10 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
 }
 
 // Raycast()
-// ±¤¼±°ú this colliderÀÇ Ãæµ¹ °á°ú ¹ÝÈ¯
+// ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ this colliderï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ ï¿½ï¿½È¯
 bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo)
 {
-    // ·¹ÀÌ ¹æÇâÀÌ 0ÀÏ ¼ö ÀÖÀ¸¹Ç·Î ¿¹¿Ü Ã³¸®
+    // ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ 0ï¿½ï¿½ ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½Ç·ï¿½ ï¿½ï¿½ï¿½ï¿½ Ã³ï¿½ï¿½
     float dirX = ray.direction.x;
     float dirY = ray.direction.y;
 
@@ -222,7 +222,7 @@ bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo
     }
     else
     {
-        // ·¹ÀÌ°¡ XÃàÀ¸·Î ÆòÇàÇÑ °æ¿ì, ¹Ù¿îµå¸¦ ¹þ¾î³ª¸é Ãæµ¹ ¾øÀ½
+        // ï¿½ï¿½ï¿½Ì°ï¿½ Xï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½, ï¿½Ù¿ï¿½å¸¦ ï¿½ï¿½ï¿½î³ªï¿½ï¿½ ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
         if (ray.origin.x < minX || ray.origin.x > maxX)
             return false;
         tMinX = -INFINITY;
@@ -250,7 +250,7 @@ bool BoxCollider::Raycast(const Ray& ray, float maxDistance, RaycastHit& hitInfo
     if (tExit < 0 || tEnter > tExit || tEnter > maxDistance)
         return false;
 
-    // Ãæµ¹ Á¤º¸ ±â·Ï
+    // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½ ï¿½ï¿½ï¿½
     hitInfo.distance = tEnter;
     hitInfo.point = ray.origin + ray.direction * tEnter;
     hitInfo.collider = this;
@@ -263,8 +263,13 @@ void BoxCollider::OnCollisionEnter(ICollider* other, ContactInfo& contact)
     Rigidbody* rb = gameObject->GetComponent<Rigidbody>();
     if (rb)
     {
-        // Ãæµ¹ º¸Á¤
-        rb->CorrectPosition(contact);
+        // ï¿½æµ¹ ï¿½ï¿½ï¿½ï¿½
+        // position correction: if the other side also has a non-kinematic
+        // Rigidbody, both sides independently correct, so only apply half
+        // the depth each - otherwise the pair separates by 2x the overlap.
+        Rigidbody* otherRb = other->gameObject->GetComponent<Rigidbody>();
+        float correctionFactor = (otherRb && !otherRb->isKinematic) ? 0.5f : 1.0f;
+        rb->CorrectPosition(contact, correctionFactor);
 
         // ground
         if (contact.normal.y > 0)
@@ -355,7 +360,7 @@ void BoxCollider::OnTriggerExit(ICollider* other, ContactInfo& contact)
 
 Vector2 BoxCollider::GetCenter() const
 {
-    // transform À§Ä¡ + offset + sizeÀÇ Àý¹Ý (Áß½É)
+    // transform ï¿½ï¿½Ä¡ + offset + sizeï¿½ï¿½ ï¿½ï¿½ï¿½ï¿½ (ï¿½ß½ï¿½)
     Vector2 scale = transform->GetWorldScale();
     Vector2 worldPos = transform->GetWorldPosition();
     return worldPos + Vector2(offset.x * scale.x, offset.y * scale.y);
