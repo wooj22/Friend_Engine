@@ -111,7 +111,6 @@ void GameApp::Init()
 void GameApp::Update()
 {
 	Input::Update();
-	Time::Update();
 	InvokeSystem::Update();
 	
 	sceneManager.Update();
@@ -161,6 +160,8 @@ void GameApp::Loop()
 			DispatchMessage(&msg);
 		}
 
+		// refresh deltaTime before the fixed-update accumulator uses it below
+		Time::Update();
 		// physics update -> fixed udpate
 		accumulator += Time::GetDeltaTime();
 		while (accumulator >= fixedDeltaTime)
