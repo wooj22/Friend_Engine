@@ -1,4 +1,4 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
+<?xml version="1.0" encoding="utf-8"?>
 <Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <ItemGroup>
     <Filter Include="소스 파일">
@@ -36,10 +36,85 @@
     <ClCompile Include="DemoApp.cpp">
       <Filter>100. DemoApp</Filter>
     </ClCompile>
+    <ClCompile Include="DemoSceneBase.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerTriggerScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="TriggerCollisionScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CollisionCollisionScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="HierarchyDemoScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RaycastDemoScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="CCDDemoScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ResourceLifetimeScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="AnimationFSMScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="RigidbodyDemoScene.cpp">
+      <Filter>00. Scene</Filter>
+    </ClCompile>
+    <ClCompile Include="ColliderControlScript.cpp">
+      <Filter>02. Script</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="DemoApp.h">
       <Filter>100. DemoApp</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoConfig.h">
+      <Filter>100. DemoApp</Filter>
+    </ClInclude>
+    <ClInclude Include="DemoSceneBase.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerTriggerScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="TriggerCollisionScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CollisionCollisionScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="HierarchyDemoScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="RaycastDemoScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="CCDDemoScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ResourceLifetimeScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="AnimationFSMScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="RigidbodyDemoScene.h">
+      <Filter>00. Scene</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderDemoObject.h">
+      <Filter>01. GameObject</Filter>
+    </ClInclude>
+    <ClInclude Include="ColliderControlScript.h">
+      <Filter>02. Script</Filter>
+    </ClInclude>
+    <ClInclude Include="CatAnimatorData.h">
+      <Filter>04. Animation</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>
