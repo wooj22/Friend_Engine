@@ -133,16 +133,26 @@ bool BoxCollider::CheckAABBCollision(BoxCollider* other, ContactInfo& contact)
         contact.depth = overlapY;
     }
 
-    // �÷��� ó��
+    // platform (one-way) handling
     if (isFlatform || other->isFlatform)
     {
-        // �÷��� �Ǻ�
         BoxCollider* flatform = isFlatform ? this : other;
-        BoxCollider* otherBox = (flatform == this) ? other : this;
+        BoxCollider* mover = (flatform == this) ? other : this;
 
-        // normal.y -1
-        Vector2 platformNormal = (flatform == this) ? contact.normal : -contact.normal;
-        if (platformNormal.y > 0)
+        // Comparing CURRENT centers can't tell "landing from above" apart from
+        // "passing through from below" once the two are already overlapping -
+        // by definition of overlap, the mover's bottom is below the platform's
+        // top either way, so the old center check flipped mid-overlap (right
+        // as the mover's center crossed the platform's) and snapped it to
+        // grounded while still jumping up through the platform. Use the
+        // mover's bottom edge from BEFORE this frame's movement (its
+        // Rigidbody's previousPosition) against the platform's current top
+        // edge instead, anchoring the decision to the platform's real surface.
+        Rigidbody* moverRb = mover->gameObject->GetComponent<Rigidbody>();
+        float moverHalfHeight = mover->size.y * 0.5f * mover->transform->GetWorldScale().y;
+        float moverPrevY = moverRb ? moverRb->previousPosition.y : mover->GetCenter().y;
+
+        if (moverPrevY - moverHalfHeight < flatform->maxY)
             return false;
 
         // flatformDepthThreshold
@@ -190,11 +200,15 @@ bool BoxCollider::CheckCircleCollision(CircleCollider* other, ContactInfo& conta
         contact.depth = circleRadius - distance;
     }
 
-    // �÷��� ó��
+    // platform (one-way) handling - this box is always the platform here,
+    // other (the circle) is always the mover; see CheckAABBCollision for why
+    // this needs the mover's pre-move position rather than current centers.
     if (isFlatform)
     {
-        /// normal.y -1
-        if (contact.normal.y >0)
+        Rigidbody* moverRb = other->gameObject->GetComponent<Rigidbody>();
+        float moverPrevY = moverRb ? moverRb->previousPosition.y : circleCenter.y;
+
+        if (moverPrevY - circleRadius < maxY)
             return false;
 
         // flatformDepthThreshold

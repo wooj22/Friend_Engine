@@ -179,19 +179,21 @@ bool CircleCollider::CheckBoxCollision(BoxCollider* other, ContactInfo& contact)
         contact.depth = scaledRadius - distance;
     }
 
-    // �÷��� ó��
+    // platform (one-way) handling - this circle is always the mover here,
+    // other (the box) is always the platform; see
+    // BoxCollider::CheckAABBCollision for why this needs the mover's
+    // pre-move position rather than current centers.
     if (other->isFlatform)
     {
-        Vector2 platformNormal = -contact.normal;
+        Rigidbody* moverRb = gameObject->GetComponent<Rigidbody>();
+        float moverPrevY = moverRb ? moverRb->previousPosition.y : circleCenter.y;
 
-        // normal.y -1
-        if (platformNormal.y > 0)
+        if (moverPrevY - scaledRadius < other->maxY)
             return false;
 
         // flatformDepthThreshold
         if (contact.depth > other->flatformDepthThreshold)
             return false;
-
     }
 
     return true;
