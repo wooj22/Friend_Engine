@@ -102,7 +102,22 @@ public:
     Vector2 GetWorldPosition() const
     {
         if (parent)
-            return parent->GetWorldPosition() + position;
+        {
+            // GetWorldMatrix() composes the full parent chain (rotation + scale +
+            // translation), so a plain position sum here drifts from where the
+            // object is actually rendered once any parent is rotated or scaled -
+            // rotate/scale this local offset by the parent's world rotation/scale
+            // before adding the parent's world position, mirroring that.
+            Vector2 parentScale = parent->GetWorldScale();
+            float parentRotation = parent->GetWorldRotation();
+
+            D2D1::Matrix3x2F parentScaleRotation =
+                D2D1::Matrix3x2F::Scale(parentScale.x, parentScale.y) *
+                D2D1::Matrix3x2F::Rotation(parentRotation);
+            D2D1_POINT_2F offset = parentScaleRotation.TransformPoint(D2D1::Point2F(position.x, position.y));
+
+            return parent->GetWorldPosition() + Vector2(offset.x, offset.y);
+        }
         return position;
     }
 
