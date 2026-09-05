@@ -27,8 +27,9 @@ void Rigidbody::FixedUpdate()
 
     if (!isKinematic)
     {
-        // impulse update
-        velocity += impulse / mass;
+        // impulse update - AddImpulse() already divides by mass before storing it,
+        // so dividing again here would turn Δv = J / mass into J / mass^2.
+        velocity += impulse;
 
         // gravity update
         if (useGravity && !isGrounded) acceleration += Vector2(0, -9.8f) * gravityScale;

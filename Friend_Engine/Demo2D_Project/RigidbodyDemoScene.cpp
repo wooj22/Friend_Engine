@@ -33,12 +33,8 @@ namespace
 		bool grounded = false;
 
 	public:
-		// NOTE: Rigidbody::AddImpulse stores impulse/mass, then FixedUpdate adds
-		// impulse/mass again on top of that - so the impulse's actual effect on
-		// velocity is jumpImpulse/(mass*mass), not jumpImpulse/mass. Tuned around
-		// that so a heavier box still gets a strong, visible jump.
 		float thrustForce = 3600.0f;
-		float jumpImpulse = 6300.0f;
+		float jumpImpulse = 2100.0f;
 
 		void Awake() override
 		{
